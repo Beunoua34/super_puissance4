@@ -27,5 +27,18 @@ public class PlateauDeJeu {
         }
         return 99; //si aucune case n'est vide, il y a une errur, donc on retourne 99 pour le signaler
     }
+    public boolean grilleRemplie(){
+        for (int ligne=0;ligne<6;ligne++){
+            for (int colonne=0; colonne<7;colonne++){
+                if (grille[ligne][colonne].presenceJeton()==false){
+                    return false; //des qu'on trouve une case vide, la grille n'est pas pleine
+                }
+            }
+        }
+        return true; //si on a trouve aucune case vide, la grille est pleine
+    }
     
+    public boolean presenceJeton(int x, int y){
+        return grille [x][y].presenceJeton();
+    }
 }
