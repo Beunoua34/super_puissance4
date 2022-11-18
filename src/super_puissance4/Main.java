@@ -8,7 +8,7 @@ package super_puissance4;
  *
  * @author benba
  */
-public class Super_puissance4 {
+public class Main {
 
     /**
      * @param args the command line arguments
