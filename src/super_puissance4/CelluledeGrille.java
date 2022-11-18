@@ -27,7 +27,7 @@ public class CelluledeGrille {
     }
     public String lireCouleurDuJeton() {
         if (jetonCourant!=null){
-            return jetonCourant.lireCouleur();
+            return jetonCourant.lireCouleur(); //on utilise la methode de la classe Jeton
         }else {
             return "vide";
         }            
