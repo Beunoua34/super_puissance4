@@ -17,6 +17,9 @@ public class Main {
         Jeton jaune= new Jeton("jaune");
         System.out.println(jaune.lireCouleur());
         System.out.println(jaune);
+        CelluledeGrille case1 = new CelluledeGrille();
+        case1.affecterJeton(jaune);
+        System.out.println(case1.lireCouleurDuJeton());
         
     }
     

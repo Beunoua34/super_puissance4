@@ -21,6 +21,17 @@ public class CelluledeGrille {
             return true;
         }
     }
+
+    public void affecterJeton(Jeton jeton) {
+        this.jetonCourant = jeton;
+    }
+    public String lireCouleurDuJeton() {
+        if (jetonCourant!=null){
+            return jetonCourant.lireCouleur();
+        }else {
+            return "vide";
+        }
+    }
     
 
     }
