@@ -18,6 +18,12 @@ public class Jeton {
     public String lireCouleur() {
         return couleur;
     }
+
+    @Override
+    public String toString() {
+        if (couleur.equals("rouge")) return "R";
+        else return "J";
+    }
     
     
     
