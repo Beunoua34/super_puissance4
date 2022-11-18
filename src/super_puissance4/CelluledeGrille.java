@@ -9,23 +9,23 @@ package super_puissance4;
  * @author guilh
  */
 public class CelluledeGrille {
-    private boolean jetonCourant;
-    private boolean avoirTrouNoir;
-    private boolean avoirDesintegrateur;
+    private Jeton jetonCourant;
+
+    public CelluledeGrille() {
+        this.jetonCourant = null;
+    }
+    public boolean presenceJeton(){
+        if (jetonCourant==null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
     
-    public CelluledeGrille(boolean jetonCourant, boolean avoirTrouNoir, boolean avoirDesintegrateur) {
-        
+
     }
 
-    public boolean isJetonCourant() {
-        return jetonCourant;
-    }
-    public boolean isAvoirTrouNoir() {
-        return avoirTrouNoir;
-    }
-    public boolean isAvoirDesintegrateur() {
-        return avoirDesintegrateur;
-    }
     
     
-}
+       
+

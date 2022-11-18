@@ -14,8 +14,9 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Jeton jaune= new Jeton("Rouge");
+        Jeton jaune= new Jeton("jaune");
         System.out.println(jaune.lireCouleur());
+        System.out.println(jaune);
         
     }
     
