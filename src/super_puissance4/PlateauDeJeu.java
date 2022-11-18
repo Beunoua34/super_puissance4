@@ -20,8 +20,8 @@ public class PlateauDeJeu {
     }
     public  int ajouterJetonDansColonne(Jeton jeton, int colonne){
         for (int ligne = 0;ligne<6;ligne++){
-            if (grille[ligne][2].presenceJeton()==false) {
-                grille[ligne][2].affecterJeton(jeton); //si la case du bas est libre, on y ajoute le jeton
+            if (grille[ligne][colonne].presenceJeton()==false) {
+                grille[ligne][colonne].affecterJeton(jeton); //si la case du bas est libre, on y ajoute le jeton
                 return ligne; //puis on retourne l'indice de la ligne
             }              
         }
@@ -41,4 +41,32 @@ public class PlateauDeJeu {
     public boolean presenceJeton(int x, int y){
         return grille [x][y].presenceJeton();
     }
+    public String lireCouleurJeton(int x, int y){
+        return grille[x][y].lireCouleurDuJeton();
+    }
+     public boolean ligneGagnantePourCouleur(String couleur){
+         for (int ligne=0;ligne<6;ligne++){
+             for (int colonne=0;colonne<4;colonne++){
+                 
+                if (grille[ligne][colonne].lireCouleurDuJeton()==couleur && grille[ligne][colonne+1].lireCouleurDuJeton()==couleur && grille[ligne][colonne+2].lireCouleurDuJeton()==couleur && grille[ligne][colonne+3].lireCouleurDuJeton()==couleur){  
+                    return true; //si la case etudiee et les 3 à sa droite sont de la bonne couleur, on retourne true
+                }                                     
+                     
+             }
+         }
+         return false; //si on n'a trouve aucune case gagnante, on retourne false
+     }
+     public boolean colonneGagnantePourCouleur(String couleur){
+         for (int ligne=0;ligne<3;ligne++){
+             for (int colonne=0;colonne<7;colonne++){
+                 
+                if (grille[ligne][colonne].lireCouleurDuJeton()==couleur && grille[ligne+1][colonne].lireCouleurDuJeton()==couleur && grille[ligne+2][colonne].lireCouleurDuJeton()==couleur && grille[ligne+3][colonne].lireCouleurDuJeton()==couleur){  
+                    return true; //si la case etudiee et les 3 à sa droite sont de la bonne couleur, on retourne true
+                }                                     
+                     
+             }
+         }
+         return false; //si on n'a trouve aucune case gagnante, on retourne false
+     }
+            
 }
