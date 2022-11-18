@@ -20,6 +20,8 @@ public class Main {
         CelluledeGrille case1 = new CelluledeGrille();
         case1.affecterJeton(jaune);
         System.out.println(case1.lireCouleurDuJeton());
+        case1.recupererJeton();
+        System.out.println(case1.lireCouleurDuJeton());
         
     }
     

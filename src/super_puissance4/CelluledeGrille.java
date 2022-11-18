@@ -30,9 +30,14 @@ public class CelluledeGrille {
             return jetonCourant.lireCouleur();
         }else {
             return "vide";
-        }
+        }            
     }
-    
+    public Jeton recupererJeton(){ //cette fonction sert a enlever un jeton dans la version 1, mais renvoie aussi le jeton enleve pour la future version 3
+        Jeton jeton_enleve; //on utlise une variable temporaire pour ne pas perdre le jeton
+        jeton_enleve=jetonCourant;
+        jetonCourant=null;
+        return jeton_enleve;
+    }
 
     }
 
