@@ -6,8 +6,20 @@ package super_puissance4;
 
 /**
  *
- * @author guilh
+ * @author guilhem
  */
 public class Jeton {
+   private String couleur;
+
+    public Jeton(String couleur) {
+        this.couleur = couleur;
+    }
+
+    public String lireCouleur() {
+        return couleur;
+    }
     
+    
+    
+   
 }
