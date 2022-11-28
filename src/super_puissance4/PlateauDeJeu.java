@@ -9,11 +9,11 @@ package super_puissance4;
  * @author guilh
  */
 public class PlateauDeJeu {
-    CelluledeGrille [][] grille = new CelluledeGrille [7][6];  
+    CelluledeGrille [][] grille = new CelluledeGrille [6][7];  
 
     public PlateauDeJeu() {
-        for (int i=0;i<7;i++){
-            for (int j=0;j<6;j++){
+        for (int i=0;i<6;i++){
+            for (int j=0;j<7;j++){
                 grille[i][j] = new CelluledeGrille(); //les cellules sont vides initialement
             }
         }
