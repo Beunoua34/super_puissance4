@@ -65,10 +65,12 @@ public class Partie {
                 System.out.println("La grille est pleine: fin de partie");
                 finito=true;
             }
+            plateau.afficherGrilleSurConsole();
+            
             if (joueurCourant==listeJoueurs[0]){
                 joueurCourant=listeJoueurs[1];
             }
-            if (joueurCourant==listeJoueurs[1]){
+            else if (joueurCourant==listeJoueurs[1]){
                 joueurCourant=listeJoueurs[0];
             } //on inverse le joueur courant
         }

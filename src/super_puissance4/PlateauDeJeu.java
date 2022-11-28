@@ -106,6 +106,15 @@ public class PlateauDeJeu {
              return false; //si aucune ligne, colonne ou diagonale n'est gagnante, on retourne false car la grille n'est ps gagnante
          }
          
+         
      }
+     public void afficherGrilleSurConsole(){
+             for (int i=0;i<6;i++){
+                 for (int j=0;j<7;j++){
+                     System.out.print(grille[i][j]);
+                 }
+                 System.out.println("");
+             }
+         }
             
 }

@@ -17,6 +17,12 @@ public class CelluledeGrille {
         this.jetonCourant = null;
         this.avoirTrouNoir = null;
     }
+
+    @Override
+    public String toString() { //toString a modifier quand on voudra traiter les trou noirs
+        if (this.jetonCourant==null) return "[     ]"; 
+        return "["+this.jetonCourant.lireCouleur()+"]";
+    }
     
     
     public boolean presenceJeton(){
