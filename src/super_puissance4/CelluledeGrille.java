@@ -6,14 +6,19 @@ package super_puissance4;
 
 /**
  *
- * @author guilh
+ * @author guilhem
  */
 public class CelluledeGrille {
     private Jeton jetonCourant;
+    private Jeton avoirTrouNoir;
+    private Jeton avoirDesintegrateur;
 
     public CelluledeGrille() {
         this.jetonCourant = null;
+        this.avoirTrouNoir = null;
     }
+    
+    
     public boolean presenceJeton(){
         if (jetonCourant==null) {
             return false;
@@ -21,9 +26,13 @@ public class CelluledeGrille {
             return true;
         }
     }
-
     public void affecterJeton(Jeton jeton) {
         this.jetonCourant = jeton;
+    }
+    public void supprimerJeton(Jeton jeton){
+        if (jetonCourant.equals(jeton)) {
+            this.jetonCourant = null;
+        }
     }
     public String lireCouleurDuJeton() {
         if (jetonCourant!=null){
@@ -38,6 +47,47 @@ public class CelluledeGrille {
         jetonCourant=null;
         return jeton_enleve;
     }
+    
+    
+    
+    public void placerTrouNoir(Jeton trounoir){
+        this.avoirTrouNoir = trounoir;
+    }
+    public void supprimerTrouNoir(Jeton trounoir){
+        if (avoirTrouNoir.equals(trounoir)) {
+            this.avoirTrouNoir = null;
+        }
+    }
+    public boolean presenceTrouNoir(){
+        if (avoirTrouNoir==null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    public void activerTrouNoir(){
+        supprimerTrouNoir(avoirTrouNoir);
+        supprimerJeton(jetonCourant);
+    }
+    
+    
+    
+    public boolean presenceDesintegrateur(){
+        if (avoirDesintegrateur==null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    public void placerDesintegrateur(Jeton desintegrateur){
+        this.avoirTrouNoir = desintegrateur;
+    }
+        public void supprimerDesintegrateur(Jeton desintegrateur){
+        if (avoirDesintegrateur.equals(desintegrateur)) {
+            this.avoirDesintegrateur = null;
+        }
+    }
+   
 
     }
 
