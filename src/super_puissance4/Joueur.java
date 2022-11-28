@@ -24,6 +24,11 @@ public class Joueur {
     public int nombreDeJetons(){
         return reserveJetons.size();
     }
+
+    @Override
+    public String toString() {
+        return "Joueur{" + "nom=" + nom + '}';
+    }
     public void ajouterJeton(Jeton jeton){
         reserveJetons.add(jeton);
     }

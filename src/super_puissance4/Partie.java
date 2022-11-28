@@ -57,7 +57,7 @@ public class Partie {
             } else{
                 System.out.println("pion place dans la ligne numero "+ligneJouee);
             }
-            if (plateau.colonneGagnantePourCouleur(joueurCourant.getCouleur())&&plateau.diagonaleDesencanteGagnantePourCouleur(joueurCourant.getCouleur()) && plateau.diagonaleMontanteGagnantePourCouleur(joueurCourant.getCouleur())&&plateau.ligneGagnantePourCouleur(joueurCourant.getCouleur())){
+            if (plateau.etreGagnantePourCouleur(joueurCourant.getCouleur())){
                 finito=true;
                 System.out.println("Felicitations, le joueur "+joueurCourant+" a gagne");
             }
@@ -65,8 +65,12 @@ public class Partie {
                 System.out.println("La grille est pleine: fin de partie");
                 finito=true;
             }
-            if (joueurCourant==listeJoueurs[0]) joueurCourant=listeJoueurs[1];
-            if (joueurCourant==listeJoueurs[1]) joueurCourant=listeJoueurs[0]; //on inverse le joueur courant
+            if (joueurCourant==listeJoueurs[0]){
+                joueurCourant=listeJoueurs[1];
+            }
+            if (joueurCourant==listeJoueurs[1]){
+                joueurCourant=listeJoueurs[0];
+            } //on inverse le joueur courant
         }
         return;
     }

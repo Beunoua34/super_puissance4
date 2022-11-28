@@ -81,7 +81,7 @@ public class PlateauDeJeu {
          return false; //si on n'a trouve aucune case gagnante, on retourne false
      }
      public boolean diagonaleDesencanteGagnantePourCouleur(String couleur){
-         for (int ligne=0;ligne<3;ligne++){
+         for (int ligne=6;ligne<3;ligne--){
              for (int colonne=0;colonne<4;colonne++){
                  
                 if (grille[ligne][colonne].lireCouleurDuJeton().equals(couleur) && grille[ligne-1][colonne+1].lireCouleurDuJeton().equals(couleur) && grille[ligne-2][colonne+2].lireCouleurDuJeton().equals(couleur) && grille[ligne-3][colonne+3].lireCouleurDuJeton().equals(couleur)){  
