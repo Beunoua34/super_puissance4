@@ -27,4 +27,10 @@ public class Joueur {
     public void ajouterJeton(Jeton jeton){
         reserveJetons.add(jeton);
     }
+    public Jeton jouerJeton(){
+        Jeton jetonJoue;
+        jetonJoue=reserveJetons.get(0); //on recuperele jeton qui sera joue pour le renvoyer a la fin
+        reserveJetons.remove(0);
+        return jetonJoue; 
+    }
 }
