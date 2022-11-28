@@ -48,7 +48,7 @@ public class PlateauDeJeu {
          for (int ligne=0;ligne<6;ligne++){
              for (int colonne=0;colonne<4;colonne++){
                  
-                if (grille[ligne][colonne].lireCouleurDuJeton()==couleur && grille[ligne][colonne+1].lireCouleurDuJeton()==couleur && grille[ligne][colonne+2].lireCouleurDuJeton()==couleur && grille[ligne][colonne+3].lireCouleurDuJeton()==couleur){  
+                if (grille[ligne][colonne].lireCouleurDuJeton().equals(couleur) && grille[ligne][colonne+1].lireCouleurDuJeton().equals(couleur) && grille[ligne][colonne+2].lireCouleurDuJeton().equals(couleur) && grille[ligne][colonne+3].lireCouleurDuJeton().equals(couleur)){  
                     return true; //si la case etudiee et les 3 à sa droite sont de la bonne couleur, on retourne true
                 }                                     
                      
@@ -60,7 +60,7 @@ public class PlateauDeJeu {
          for (int ligne=0;ligne<3;ligne++){
              for (int colonne=0;colonne<7;colonne++){
                  
-                if (grille[ligne][colonne].lireCouleurDuJeton()==couleur && grille[ligne+1][colonne].lireCouleurDuJeton()==couleur && grille[ligne+2][colonne].lireCouleurDuJeton()==couleur && grille[ligne+3][colonne].lireCouleurDuJeton()==couleur){  
+                if (grille[ligne][colonne].lireCouleurDuJeton().equals(couleur) && grille[ligne+1][colonne].lireCouleurDuJeton().equals(couleur) && grille[ligne+2][colonne].lireCouleurDuJeton().equals(couleur) && grille[ligne+3][colonne].lireCouleurDuJeton().equals(couleur)){  
                     return true; //si la case etudiee et les 3 à sa droite sont de la bonne couleur, on retourne true
                 }                                     
                      
