@@ -68,5 +68,44 @@ public class PlateauDeJeu {
          }
          return false; //si on n'a trouve aucune case gagnante, on retourne false
      }
+     public boolean diagonaleMontanteGagnantePourCouleur(String couleur){
+         for (int ligne=0;ligne<3;ligne++){
+             for (int colonne=0;colonne<4;colonne++){
+                 
+                if (grille[ligne][colonne].lireCouleurDuJeton().equals(couleur) && grille[ligne+1][colonne+1].lireCouleurDuJeton().equals(couleur) && grille[ligne+2][colonne+2].lireCouleurDuJeton().equals(couleur) && grille[ligne+3][colonne+3].lireCouleurDuJeton().equals(couleur)){  
+                    return true; //si la case etudiee et les 3 dans sa diagonale au dessus sont de la bonne couleur, on retourne true
+                }                                     
+                     
+             }
+         }
+         return false; //si on n'a trouve aucune case gagnante, on retourne false
+     }
+     public boolean diagonaleDesencanteGagnantePourCouleur(String couleur){
+         for (int ligne=0;ligne<3;ligne++){
+             for (int colonne=0;colonne<4;colonne++){
+                 
+                if (grille[ligne][colonne].lireCouleurDuJeton().equals(couleur) && grille[ligne-1][colonne+1].lireCouleurDuJeton().equals(couleur) && grille[ligne-2][colonne+2].lireCouleurDuJeton().equals(couleur) && grille[ligne-3][colonne+3].lireCouleurDuJeton().equals(couleur)){  
+                    return true; //si la case etudiee et les 3 dans sa diagonale en dessous sont de la bonne couleur, on retourne true
+                }                                     
+                     
+             }
+         }
+         return false; //si on n'a trouve aucune case gagnante, on retourne false
+     }
+     public Boolean etreGagnantePourCouleur (String couleur){
+         if (diagonaleDesencanteGagnantePourCouleur(couleur)){
+             return true;
+         } else if (diagonaleMontanteGagnantePourCouleur(couleur)){
+             return true;
+         }
+         else if (colonneGagnantePourCouleur(couleur)){
+             return true;
+         } else if (ligneGagnantePourCouleur(couleur)){
+             return true;
+         }else {
+             return false; //si aucune ligne, colonne ou diagonale n'est gagnante, on retourne false car la grille n'est ps gagnante
+         }
+         
+     }
             
 }
