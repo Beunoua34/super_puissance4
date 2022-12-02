@@ -11,12 +11,19 @@ package super_puissance4;
 public class Jeton {
    private String couleur;
 
-    public Jeton(String couleur) {
-        this.couleur = couleur;
+    public Jeton(String color) {
+        couleur = color;
     }
 
     public String lireCouleur() {
         return couleur;
+    }
+
+    public String getCouleur() {  
+        if (couleur=="rouge"){
+            return "R";
+        }else return "J"; //on retourne seulement "R" ou "J" pour l'affichage de la grille
+        
     }
 
     @Override

@@ -6,10 +6,7 @@ package super_puissance4;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author guilh
- */
+
 public class Joueur {
     private String nom;
     private String couleur;

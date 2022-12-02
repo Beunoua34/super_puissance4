@@ -9,8 +9,13 @@ package super_puissance4;
  * @author guilhem
  */
 public class CelluledeGrille {
+
     private Jeton jetonCourant;
     private boolean avoirTrouNoir;
+
+    public Jeton getJetonCourant() {
+        return jetonCourant;
+    }
     private boolean avoirDesintegrateur;
 
     public CelluledeGrille() {
@@ -19,74 +24,83 @@ public class CelluledeGrille {
     }
 
     @Override
-    public String toString() { //toString a modifier quand on voudra traiter les trou noirs
-        if (this.jetonCourant==null) return "[     ]"; 
-        return "["+this.jetonCourant.lireCouleur()+"]";
+    public String toString() { //toString a modifier quand on voudra traiter les trou noirs -bien vu le sang je modifie ca en 2/2
+        if (jetonCourant == null) {
+            return ".";
+        } else {
+            if (jetonCourant!=null){
+                return jetonCourant.getCouleur(); 
+            } else {
+              if (presenceTrouNoir()){ //si il y a un trou noir ET un desitegrateur, on affiche le trou noir
+                  return "@";
+              } else {
+                  if (presenceDesintegrateur()) {
+                      return "D";
+                  }
+              } 
+            }                   
+        }
+        return "Erreur"; //cas d'une eventuelle erreur
     }
-    
-    
-    public boolean presenceJeton(){
-        if (jetonCourant==null) {
+
+    public boolean presenceJeton() {
+        if (jetonCourant == null) {
             return false;
         } else {
             return true;
         }
     }
+
     public void affecterJeton(Jeton jeton) {
         this.jetonCourant = jeton;
     }
-    public void supprimerJeton(Jeton jeton){
-        if (jetonCourant.equals(jeton)) {
-            this.jetonCourant = null;
+
+    public void supprimerJeton() {
+        jetonCourant = null;        
+    }
+
+    public String lireCouleurDuJeton() {
+        if (jetonCourant != null) {
+            return jetonCourant.lireCouleur(); //on utilise la methode de la classe Jeton
+        } else {
+            return "vide";
         }
     }
-    public String lireCouleurDuJeton() {
-        if (jetonCourant!=null){
-            return jetonCourant.lireCouleur(); //on utilise la methode de la classe Jeton
-        }else {
-            return "vide";
-        }            
-    }
-    public Jeton recupererJeton(){ //cette fonction sert a enlever un jeton dans la version 1, mais renvoie aussi le jeton enleve pour la future version 3
+
+    public Jeton recupererJeton() { //cette fonction sert a enlever un jeton dans la version 1, mais renvoie aussi le jeton enleve pour la future version 3
         Jeton jeton_enleve; //on utlise une variable temporaire pour ne pas perdre le jeton
-        jeton_enleve=jetonCourant;
-        jetonCourant=null;
+        jeton_enleve = jetonCourant;
+        jetonCourant = null;
         return jeton_enleve;
     }
-    
-    
-    
-    public void placerTrouNoir(){
+
+    public void placerTrouNoir() {
         avoirTrouNoir = true;
     }
-    public void supprimerTrouNoir(){        
-            avoirTrouNoir = false;
+
+    public void supprimerTrouNoir() {
+        avoirTrouNoir = false;
     }
-    public boolean presenceTrouNoir(){
-        return avoirTrouNoir;        
+
+    public boolean presenceTrouNoir() {
+        return avoirTrouNoir;
     }
-    
-    
-    public void activerTrouNoir(){
+
+    public void activerTrouNoir() {
         supprimerTrouNoir();
-        supprimerJeton(jetonCourant);
+        supprimerJeton();
     }
-    
-    
-    
-    public boolean presenceDesintegrateur(){
+
+    public boolean presenceDesintegrateur() {
         return avoirDesintegrateur;
     }
-    public void placerDesintegrateur(Jeton desintegrateur){
-    avoirDesintegrateur=true;
-    }
-    public void supprimerDesintegrateur(){
-        avoirDesintegrateur=false;
+
+    public void placerDesintegrateur(Jeton desintegrateur) {
+        avoirDesintegrateur = true;
     }
 
+    public void supprimerDesintegrateur() {
+        avoirDesintegrateur = false;
     }
 
-    
-    
-       
-
+}
