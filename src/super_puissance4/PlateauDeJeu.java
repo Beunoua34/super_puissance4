@@ -19,7 +19,7 @@ public class PlateauDeJeu {
         }
     }
     public  int ajouterJetonDansColonne(Jeton jeton, int colonne){
-        for (int ligne = 0;ligne<6;ligne++){
+        for (int ligne = 5;ligne>0;ligne--){
             if (grille[ligne][colonne].presenceJeton()==false) {
                 grille[ligne][colonne].affecterJeton(jeton); //si la case du bas est libre, on y ajoute le jeton
                 return ligne; //puis on retourne l'indice de la ligne

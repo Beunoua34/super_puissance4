@@ -51,7 +51,7 @@ public class Partie {
             System.out.println("Sur quelle colonne voulez-vous jouer? (1 a 7)");
             colonneJouee=sc.nextInt(); //saisie sur l'interface
             int ligneJouee;
-            ligneJouee= plateau.ajouterJetonDansColonne(joueurCourant.jouerJeton(),colonneJouee);
+            ligneJouee= plateau.ajouterJetonDansColonne(joueurCourant.jouerJeton(),colonneJouee-1);
             if (ligneJouee==99){
                 System.out.println("Erreur: la colonne est pleine");
             } else{
