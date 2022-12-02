@@ -124,19 +124,31 @@ public class PlateauDeJeu {
             System.out.println("");
         }
     }
-    public void viderGrille(Joueur j1,Joueur j2){
+
+    public void viderGrille(Joueur j1, Joueur j2) {
         for (int ligne = 0; ligne < 6; ligne++) {
             for (int colonne = 0; colonne < 7; colonne++) {
-                if (grille[ligne][colonne].getJetonCourant().getCouleur()==j1.getCouleur()){ //on verifie à quel joueur appartient chaque jeton
+                if (grille[ligne][colonne].getJetonCourant().getCouleur() == j1.getCouleur()) { //on verifie à quel joueur appartient chaque jeton
                     j1.ajouterJeton(grille[ligne][colonne].getJetonCourant());//on rend le jeton au joueur
                     grille[ligne][colonne].supprimerJeton(); //et on enleve le jeton de la grille
                 }
-                if (grille[ligne][colonne].getJetonCourant().getCouleur()==j2.getCouleur()){ //meme demarche pour l'autre joueur
+                if (grille[ligne][colonne].getJetonCourant().getCouleur() == j2.getCouleur()) { //meme demarche pour l'autre joueur
                     j2.ajouterJeton(grille[ligne][colonne].getJetonCourant());//on rend le jeton au joueur
                     grille[ligne][colonne].supprimerJeton(); //et on enleve le jeton de la grille
                 }
             }
+        }
+
     }
 
+    public void tasserColonne(int colonne) {
+        for (int ligne = 5; ligne > 0; ligne--) {
+            if (grille[ligne][colonne].presenceJeton() == false) { //si la case est vide
+                if (grille[ligne + 1][colonne].presenceJeton() == true) {//et si sa case au dessus est pleine
+                    grille[ligne][colonne].affecterJeton(grille[ligne + 1][colonne].getJetonCourant());//on prend le jeton de la case superieure et on le met dans la case traitee
+                    grille[ligne + 1][colonne].supprimerJeton();//et on le supprime de la case au dessu
+                }
+            }
+        }
     }
 }
