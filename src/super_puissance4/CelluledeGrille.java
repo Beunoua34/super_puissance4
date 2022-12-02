@@ -10,12 +10,12 @@ package super_puissance4;
  */
 public class CelluledeGrille {
     private Jeton jetonCourant;
-    private Jeton avoirTrouNoir;
-    private Jeton avoirDesintegrateur;
+    private boolean avoirTrouNoir;
+    private boolean avoirDesintegrateur;
 
     public CelluledeGrille() {
-        this.jetonCourant = null;
-        this.avoirTrouNoir = null;
+        jetonCourant = null;
+        avoirTrouNoir = false;
     }
 
     @Override
@@ -56,44 +56,33 @@ public class CelluledeGrille {
     
     
     
-    public void placerTrouNoir(Jeton trounoir){
-        this.avoirTrouNoir = trounoir;
+    public void placerTrouNoir(){
+        avoirTrouNoir = true;
     }
-    public void supprimerTrouNoir(Jeton trounoir){
-        if (avoirTrouNoir.equals(trounoir)) {
-            this.avoirTrouNoir = null;
-        }
+    public void supprimerTrouNoir(){        
+            avoirTrouNoir = false;
     }
     public boolean presenceTrouNoir(){
-        if (avoirTrouNoir==null) {
-            return false;
-        } else {
-            return true;
-        }
+        return avoirTrouNoir;        
     }
+    
+    
     public void activerTrouNoir(){
-        supprimerTrouNoir(avoirTrouNoir);
+        supprimerTrouNoir();
         supprimerJeton(jetonCourant);
     }
     
     
     
     public boolean presenceDesintegrateur(){
-        if (avoirDesintegrateur==null) {
-            return false;
-        } else {
-            return true;
-        }
+        return avoirDesintegrateur;
     }
     public void placerDesintegrateur(Jeton desintegrateur){
-        this.avoirTrouNoir = desintegrateur;
+    avoirDesintegrateur=true;
     }
-        public void supprimerDesintegrateur(Jeton desintegrateur){
-        if (avoirDesintegrateur.equals(desintegrateur)) {
-            this.avoirDesintegrateur = null;
-        }
+    public void supprimerDesintegrateur(){
+        avoirDesintegrateur=false;
     }
-   
 
     }
 

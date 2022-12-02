@@ -39,6 +39,10 @@ public class Joueur {
         return jetonJoue; 
     }
 
+    public ArrayList<Jeton> getReserveJetons() {
+        return reserveJetons;
+    }
+
     public String getCouleur() {
         return couleur;
     }
