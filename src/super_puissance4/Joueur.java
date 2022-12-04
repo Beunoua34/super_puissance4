@@ -11,12 +11,14 @@ public class Joueur {
     private String nom;
     private String couleur;
     private ArrayList <Jeton> reserveJetons= new ArrayList <Jeton>();
+    private int nombreDesintegrateurs;
 
-    public Joueur(String nom) {
-        this.nom = nom;
+    public Joueur(String name) {
+        nom = name;
+        nombreDesintegrateurs=0;
     }
-    public void affecterCouleur(String couleur){
-        this.couleur=couleur;
+    public void affecterCouleur(String color){
+        couleur=color;
     }
     public int nombreDeJetons(){
         return reserveJetons.size();
@@ -43,4 +45,10 @@ public class Joueur {
     public String getCouleur() {
         return couleur;
     }
-}
+    public void obtenirDesintegrateur(){
+        nombreDesintegrateurs+=1;
+    }
+    public void utiliserDesintegrateur(){
+    nombreDesintegrateurs-=1;
+    }
+}    
