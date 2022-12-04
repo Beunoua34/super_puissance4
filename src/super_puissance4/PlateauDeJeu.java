@@ -156,6 +156,18 @@ public class PlateauDeJeu {
     public void placerTrouNoir(int ligne, int colonne){
         grille[ligne][colonne].placerTrouNoir();
     }
+    public void supprimerTrouNoir(int ligne, int colonne){
+        grille[ligne][colonne].supprimerTrouNoir();
+    }
+    public void placerDesintegrateur(int ligne, int colonne){
+        grille[ligne][colonne].placerDesintegrateur();
+    }
+    public void supprimerDesintegrateur(int ligne, int colonne){
+        grille[ligne][colonne].supprimerDesintegrateur();
+    }
+    public void supprimerJeton(int ligne, int colonne){
+        grille[ligne][colonne].supprimerJeton();
+    }
     
 }
 

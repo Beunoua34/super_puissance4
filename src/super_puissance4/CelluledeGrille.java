@@ -95,7 +95,7 @@ public class CelluledeGrille {
         return avoirDesintegrateur;
     }
 
-    public void placerDesintegrateur(Jeton desintegrateur) {
+    public void placerDesintegrateur() {
         avoirDesintegrateur = true;
     }
 
