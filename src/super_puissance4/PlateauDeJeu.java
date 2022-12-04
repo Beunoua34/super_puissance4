@@ -153,6 +153,10 @@ public class PlateauDeJeu {
     public boolean presenceTrouNoir(int ligne, int colonne){
        return grille[ligne][colonne].presenceTrouNoir();
     }
+    public void placerTrouNoir(int ligne, int colonne){
+        grille[ligne][colonne].placerTrouNoir();
+    }
+    
 }
 
 
