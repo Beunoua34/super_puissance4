@@ -108,11 +108,8 @@ public class PlateauDeJeu {
             return true;
         } else if (colonneGagnantePourCouleur(couleur)) {
             return true;
-        } else if (ligneGagnantePourCouleur(couleur)) {
-            return true;
-        } else {
-            return false; //si aucune ligne, colonne ou diagonale n'est gagnante, on retourne false car la grille n'est ps gagnante
-        }
+        } else return ligneGagnantePourCouleur(couleur); //si aucune ligne, colonne ou diagonale n'est gagnante, on retourne false car la grille n'est ps gagnante
+        
 
     }
 
@@ -128,11 +125,13 @@ public class PlateauDeJeu {
     public void viderGrille(Joueur j1, Joueur j2) {
         for (int ligne = 0; ligne < 6; ligne++) {
             for (int colonne = 0; colonne < 7; colonne++) {
-                if (grille[ligne][colonne].getJetonCourant().getCouleur() == j1.getCouleur()) { //on verifie à quel joueur appartient chaque jeton
+                if (grille[ligne][colonne].getJetonCourant().getCouleur().equals(j1.getCouleur())) { //on verifie à quel joueur appartient chaque jeton
                     j1.ajouterJeton(grille[ligne][colonne].getJetonCourant());//on rend le jeton au joueur
                     grille[ligne][colonne].supprimerJeton(); //et on enleve le jeton de la grille
                 }
-                if (grille[ligne][colonne].getJetonCourant().getCouleur() == j2.getCouleur()) { //meme demarche pour l'autre joueur
+                if (!grille[ligne][colonne].getJetonCourant().getCouleur().equals(j2.getCouleur())) {
+                } else {
+                    //meme demarche pour l'autre joueur
                     j2.ajouterJeton(grille[ligne][colonne].getJetonCourant());//on rend le jeton au joueur
                     grille[ligne][colonne].supprimerJeton(); //et on enleve le jeton de la grille
                 }
@@ -151,4 +150,9 @@ public class PlateauDeJeu {
             }
         }
     }
+    public boolean presenceTrouNoir(int ligne, int colonne){
+       return grille[ligne][colonne].presenceTrouNoir();
+    }
 }
+
+
