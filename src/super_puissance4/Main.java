@@ -14,6 +14,10 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        double alea = Math.random()*7; //on genere un double aleatoire entre 0 et 7
+        System.out.println(alea);
+        int ligne = (int)alea;
+        System.out.println(ligne);
        Joueur j1= new Joueur("benoit");
        Joueur j2=new Joueur("Guilhem");
        Partie game = new Partie (j1,j2);
