@@ -59,12 +59,16 @@ public class Partie {
             System.out.println("Sur quelle colonne voulez-vous jouer? (1 a 7)");
             colonneJouee = sc.nextInt(); //saisie sur l'interface
             int ligneJouee;
-            ligneJouee = plateau.ajouterJetonDansColonne(joueurCourant.jouerJeton(), colonneJouee - 1);
-            if (ligneJouee == 99) {
+            ligneJouee = plateau.ajouterJetonDansColonne(joueurCourant.getReserveJetons().get(0), colonneJouee - 1);
+            while (ligneJouee == 99) { //tant que le joueur joue sur une colonne pleine, on lui demande de rejouer
                 System.out.println("Erreur: la colonne est pleine");
-            } else {
-                System.out.println("pion place dans la ligne numero " + ligneJouee);
-            }
+                System.out.println("Sur quelle colonne voulez-vous jouer? (1 a 7)");
+                colonneJouee = sc.nextInt(); //saisie sur l'interface
+                ligneJouee = plateau.ajouterJetonDansColonne(joueurCourant.getReserveJetons().get(0), colonneJouee - 1);
+            } 
+            System.out.println("pion place dans la ligne numero " + ligneJouee);
+            joueurCourant.jouerJeton();//si le colonne n'est pas pleine, on enleve le jeton place de la reserve du joueur 
+            
             if (plateau.etreGagnantePourCouleur(joueurCourant.getCouleur())) {
                 finito = true;
                 System.out.println("Felicitations, le joueur " + joueurCourant + " a gagne");
@@ -80,7 +84,6 @@ public class Partie {
                 joueurCourant = listeJoueurs[0];
             } //on inverse le joueur courant
         }
-        return;
     }
 
 }

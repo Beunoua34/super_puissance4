@@ -52,7 +52,7 @@ public class CelluledeGrille {
     }
 
     public void affecterJeton(Jeton jeton) {
-        this.jetonCourant = jeton;
+        jetonCourant = jeton;
     }
 
     public void supprimerJeton() {

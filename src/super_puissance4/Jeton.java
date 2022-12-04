@@ -20,7 +20,7 @@ public class Jeton {
     }
 
     public String getCouleur() {  
-        if (couleur=="rouge"){
+        if (couleur.equals("rouge")){
             return "R";
         }else return "J"; //on retourne seulement "R" ou "J" pour l'affichage de la grille
         
