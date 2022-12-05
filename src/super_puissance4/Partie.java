@@ -105,14 +105,32 @@ public class Partie {
             int choixJoueur;
             sc = new Scanner(System.in);
             plateau.afficherGrilleSurConsole();
+            if (joueurCourant == listeJoueurs[0]) {
+                joueurSuivant = listeJoueurs[1];
+            } else if (joueurCourant == listeJoueurs[1]) {
+                joueurSuivant = listeJoueurs[0];//on inverse le joueur courant
+            }
             System.out.println("Au tour de " + joueurCourant + " (couleur " + joueurCourant.getCouleur() + ")");
             System.out.println("Il vous reste " + joueurCourant.getReserveJetons().size() + " jetons et " + joueurCourant.getNombreDesintegrateurs() + " deintegrateurs."); //on utilise la fonction size() pour indiquer le nombre de jetons restants
             choixJoueur = 99;
             while (choixJoueur != 1 && choixJoueur != 2 && choixJoueur != 3) { //tant que le choix du joueur n'est pas valide
 
                 System.out.println("Que voulez vous faire?");
-                System.out.println("Placer un jeton (1), en recupérer un (2) ou jouer un desintegrateur (3)?");
+                System.out.println("Placer un jeton (1), en recuperer un (2) ou jouer un desintegrateur (3)?");
                 choixJoueur = sc.nextInt();
+            }
+            while (choixJoueur == 2 && joueurCourant.getReserveJetons().size() == 30) {
+                System.out.println("Vous n'avez pas de jeton a retirer");
+                System.out.println("Que voulez vous faire?");
+                System.out.println("Placer un jeton (1), en recuperer un (2) ou jouer un desintegrateur (3)?");
+                choixJoueur = sc.nextInt();
+            }
+            while (choixJoueur == 3 && joueurCourant.getNombreDesintegrateurs() == 0) {
+                System.out.println("Vous n'avez pas de desintegrateur. Gros chien");
+                System.out.println("Que voulez vous faire?");
+                System.out.println("Placer un jeton (1), en recuperer un (2) ou jouer un desintegrateur (3)?");
+                choixJoueur = sc.nextInt();
+                
             }
 
 ///si le joueur joue un jeton
@@ -157,33 +175,49 @@ public class Partie {
                     colonneJouee = sc.nextInt();
                     System.out.println("Sur quelle ligne est le jeton que vous voulez recuperer?");
                     ligneJouee = sc.nextInt();
+
+                  
                 }
                 joueurCourant.ajouterJeton(plateau.recupererJeton(ligneJouee - 1, colonneJouee - 1)); //on enleve le jeton et on le redonne au joueur
-                plateau.tasserColonne(colonneJouee - 1);
+                    plateau.tasserColonne(colonneJouee - 1);
             }
-///
-            if (joueurCourant == listeJoueurs[0]) {
-                joueurSuivant = listeJoueurs[1];
-            } else if (joueurCourant == listeJoueurs[1]) {
-                joueurSuivant = listeJoueurs[0];
-            } //on inverse le joueur courant
-            if (plateau.etreGagnantePourCouleur(joueurCourant.getCouleur())) {
-                finito = true;
-                if (plateau.etreGagnantePourCouleur(joueurSuivant.getCouleur())) {
-                    System.out.println("Les 2 ");
-                }
+/// si le joueur joue un desintegrateur
+            if (choixJoueur == 3) {
+                int ligneDesint;
+                System.out.println("Sur quelle colonne est le jeton que vous voulez desintegrer?");
+                colonneJouee = sc.nextInt();
+                System.out.println("Sur quelle ligne est le jeton que vous voulez desintegrer?");
+                ligneDesint = sc.nextInt();
+                while (plateau.lireCouleurJeton(ligneDesint - 1, colonneJouee - 1) != joueurSuivant.getCouleur()) {
+                    System.out.println("Il n'y a pas de jeton advesre sur  cette case.");
+                    System.out.println("Sur quelle colonne est le jeton que vous voulez desintegrer?");
+                    colonneJouee = sc.nextInt();
+                    System.out.println("Sur quelle ligne est le jeton que vous voulez desintegrer?");
+                    ligneDesint = sc.nextInt();
 
+                }
+                plateau.supprimerJeton(ligneDesint-1, colonneJouee-1);
+                joueurCourant.utiliserDesintegrateur();
+                plateau.tasserColonne(colonneJouee-1);
+            }
+
+///
+            if (plateau.etreGagnantePourCouleur(joueurSuivant.getCouleur())) { //on verifie que la victoire ne revienne pas a l'autre joueur suit un la suppression d'un jeton
+                System.out.println("Felicitations, le joueur " + joueurSuivant + " a gagne");
+                finito = true;
+                plateau.afficherGrilleSurConsole();
+            } else if (plateau.etreGagnantePourCouleur(joueurCourant.getCouleur())) {
+
+                finito = true;
                 plateau.afficherGrilleSurConsole();
                 System.out.println("Felicitations, le joueur " + joueurCourant + " a gagne");
             }
+
             if (plateau.grilleRemplie()) {
                 System.out.println("La grille est pleine: fin de partie");
                 finito = true;
             }
-
             joueurCourant = joueurSuivant;
-        } //on inverse le joueur courant
-    }
+        }
+    }   //on inverse le joueur courant
 }
-
-
