@@ -6,21 +6,23 @@ package super_puissance4;
 
 import java.util.ArrayList;
 
-
 public class Joueur {
+
     private String nom;
     private String couleur;
-    private ArrayList <Jeton> reserveJetons= new ArrayList <Jeton>();
+    private ArrayList<Jeton> reserveJetons = new ArrayList<Jeton>();
     private int nombreDesintegrateurs;
 
     public Joueur(String name) {
         nom = name;
-        nombreDesintegrateurs=0;
+        nombreDesintegrateurs = 0;
     }
-    public void affecterCouleur(String color){
-        couleur=color;
+
+    public void affecterCouleur(String color) {
+        couleur = color;
     }
-    public int nombreDeJetons(){
+
+    public int nombreDeJetons() {
         return reserveJetons.size();
     }
 
@@ -28,14 +30,16 @@ public class Joueur {
     public String toString() {
         return nom;
     }
-    public void ajouterJeton(Jeton jeton){
+
+    public void ajouterJeton(Jeton jeton) {
         reserveJetons.add(jeton);
     }
-    public Jeton jouerJeton(){
+
+    public Jeton jouerJeton() {
         Jeton jetonJoue;
-        jetonJoue=reserveJetons.get(0); //on recupere le jeton qui sera joue pour le renvoyer a la fin
+        jetonJoue = reserveJetons.get(0); //on recupere le jeton qui sera joue pour le renvoyer a la fin
         reserveJetons.remove(0);
-        return jetonJoue; 
+        return jetonJoue;
     }
 
     public ArrayList<Jeton> getReserveJetons() {
@@ -45,10 +49,16 @@ public class Joueur {
     public String getCouleur() {
         return couleur;
     }
-    public void obtenirDesintegrateur(){
-        nombreDesintegrateurs+=1;
+
+    public void obtenirDesintegrateur() {
+        nombreDesintegrateurs += 1;
     }
-    public void utiliserDesintegrateur(){
-    nombreDesintegrateurs-=1;
+
+    public int getNombreDesintegrateurs() {
+        return nombreDesintegrateurs;
     }
-}    
+
+    public void utiliserDesintegrateur() {
+        nombreDesintegrateurs -= 1;
+    }
+}

@@ -116,10 +116,12 @@ public class PlateauDeJeu {
     public void afficherGrilleSurConsole() {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 7; j++) {
-                System.out.print(grille[i][j]);
+                System.out.print(grille[i][j]+ " ");
             }
-            System.out.println("");
+            System.out.println(" "+ (i+1));//retour a la ligne
         }
+        System.out.println("");
+        System.out.println("1 2 3 4 5 6 7");
     }
 
     public void viderGrille(Joueur j1, Joueur j2) {
@@ -143,9 +145,9 @@ public class PlateauDeJeu {
     public void tasserColonne(int colonne) {
         for (int ligne = 5; ligne > 0; ligne--) {
             if (grille[ligne][colonne].presenceJeton() == false) { //si la case est vide
-                if (grille[ligne + 1][colonne].presenceJeton() == true) {//et si sa case au dessus est pleine
-                    grille[ligne][colonne].affecterJeton(grille[ligne + 1][colonne].getJetonCourant());//on prend le jeton de la case superieure et on le met dans la case traitee
-                    grille[ligne + 1][colonne].supprimerJeton();//et on le supprime de la case au dessu
+                if (grille[ligne - 1][colonne].presenceJeton() == true) {//et si sa case au dessus est pleine
+                    grille[ligne][colonne].affecterJeton(grille[ligne - 1][colonne].getJetonCourant());//on prend le jeton de la case superieure et on le met dans la case traitee
+                    grille[ligne - 1][colonne].supprimerJeton();//et on le supprime de la case au dessu
                 }
             }
         }
@@ -174,7 +176,6 @@ public class PlateauDeJeu {
     public Jeton recupererJeton(int ligne, int colonne){
         return grille[ligne][colonne].recupererJeton();
     }
-    
 }
 
 

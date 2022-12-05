@@ -25,20 +25,19 @@ public class CelluledeGrille {
 
     @Override
     public String toString() { //toString a modifier quand on voudra traiter les trou noirs -bien vu le sang je modifie ca en 2/2
-        if (jetonCourant == null) {
-            return ".";
+        if (presenceTrouNoir()) { //si il y a un trou noir ET un desitegrateur, on affiche le trou noir
+            return "@";
         } else {
-            if (jetonCourant!=null){
-                return jetonCourant.getCouleur(); 
+            if (presenceDesintegrateur()) {
+                return "D";
+            }
+            if (jetonCourant == null) {
+                return ".";
             } else {
-              if (presenceTrouNoir()){ //si il y a un trou noir ET un desitegrateur, on affiche le trou noir
-                  return "@";
-              } else {
-                  if (presenceDesintegrateur()) {
-                      return "D";
-                  }
-              } 
-            }                   
+                if (jetonCourant != null) {
+                    return jetonCourant.getCouleur();
+                }
+            }
         }
         return "Erreur"; //cas d'une eventuelle erreur
     }
@@ -56,7 +55,7 @@ public class CelluledeGrille {
     }
 
     public void supprimerJeton() {
-        jetonCourant = null;        
+        jetonCourant = null;
     }
 
     public String lireCouleurDuJeton() {
