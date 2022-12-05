@@ -102,7 +102,8 @@ public class Partie {
         while (finito == false) { //tant que la partie n'est pas finie
             Scanner sc;
             int colonneJouee;
-            int choixJoueur;
+            int choixJoueur = 99;//variable prenant le choix du joueur d'on initialise volontairement en un choix invalide
+            boolean choixValide = false; //cette variable servira a verifier si le joueur fait un choix possible
             sc = new Scanner(System.in);
             plateau.afficherGrilleSurConsole();
             if (joueurCourant == listeJoueurs[0]) {
@@ -112,27 +113,47 @@ public class Partie {
             }
             System.out.println("Au tour de " + joueurCourant + " (couleur " + joueurCourant.getCouleur() + ")");
             System.out.println("Il vous reste " + joueurCourant.getReserveJetons().size() + " jetons et " + joueurCourant.getNombreDesintegrateurs() + " deintegrateurs."); //on utilise la fonction size() pour indiquer le nombre de jetons restants
-            choixJoueur = 99;
-            while (choixJoueur != 1 && choixJoueur != 2 && choixJoueur != 3) { //tant que le choix du joueur n'est pas valide
-
+            while (choixValide == false) {
                 System.out.println("Que voulez vous faire?");
                 System.out.println("Placer un jeton (1), en recuperer un (2) ou jouer un desintegrateur (3)?");
                 choixJoueur = sc.nextInt();
+                choixValide = true; //on dit que le choix est ppossible, et on va chercher des incoherences
+                if (choixJoueur != 1 && choixJoueur != 2 && choixJoueur != 3) { //si le joueur ne tappe pas 1, 2 ou 3 le choix n'est pas valide
+                    choixValide = false;
+                }
+                if (choixJoueur == 2) {
+                    boolean pasDeJeton = true; //on part du principe que le joueur n'a pas de jeton pose sur la ligne, donc qu'il ne peut pas en recuperer
+                    for (int ligne = 0; ligne < 6; ligne++) {
+                        for (int colonne = 0; colonne < 7; colonne++) {
+                            if (plateau.lireCouleurJeton(ligne, colonne) == joueurCourant.getCouleur()) {//si on trouve une case avec un jeton recuperable
+                                pasDeJeton = false; //alors le choix est valide
+                            }
+                        }
+                    }
+                    if (pasDeJeton) { //si on n'a pas trouve de jeton recuperable, le choix n'est pas valide
+                        System.out.println("Vous n'avez pas de jeton a retirer");
+                        choixValide = false;
+                    }
+                }
+                if (choixJoueur == 3) {
+                    if (joueurCourant.getNombreDesintegrateurs() == 0) {
+                        System.out.println("Vous n'avez pas de desintegrateur. Gros chien");
+                        choixValide = false;
+                    }
+                    boolean pasDeJeton = true; //on part du principe qu'il n'y a pas de jeton desintegrable sur le plateau
+                    for (int ligne = 0; ligne < 6; ligne++) {
+                        for (int colonne = 0; colonne < 7; colonne++) { //on parcourt tout le tableau
+                            if (plateau.lireCouleurJeton(ligne, colonne) == joueurSuivant.getCouleur()) {//si on trouve une case avec un jeton desintegrable
+                                pasDeJeton = false; //alors le choix est valide
+                            }
+                        }
+                    }
+                    if (pasDeJeton) { //si on n'a pas trouve de jeton recuperable, le choix n'est pas valide
+                        System.out.println("Vous n'avez pas de jeton a desintegrer");
+                        choixValide = false;
+                    }
+                }
             }
-            while (choixJoueur == 2 && joueurCourant.getReserveJetons().size() == 30) {
-                System.out.println("Vous n'avez pas de jeton a retirer");
-                System.out.println("Que voulez vous faire?");
-                System.out.println("Placer un jeton (1), en recuperer un (2) ou jouer un desintegrateur (3)?");
-                choixJoueur = sc.nextInt();
-            }
-            while (choixJoueur == 3 && joueurCourant.getNombreDesintegrateurs() == 0) {
-                System.out.println("Vous n'avez pas de desintegrateur. Gros chien");
-                System.out.println("Que voulez vous faire?");
-                System.out.println("Placer un jeton (1), en recuperer un (2) ou jouer un desintegrateur (3)?");
-                choixJoueur = sc.nextInt();
-                
-            }
-
 ///si le joueur joue un jeton
             if (choixJoueur == 1) {
                 System.out.println("Sur quelle colonne voulez-vous jouer? (1 a 7)");
@@ -176,10 +197,9 @@ public class Partie {
                     System.out.println("Sur quelle ligne est le jeton que vous voulez recuperer?");
                     ligneJouee = sc.nextInt();
 
-                  
                 }
                 joueurCourant.ajouterJeton(plateau.recupererJeton(ligneJouee - 1, colonneJouee - 1)); //on enleve le jeton et on le redonne au joueur
-                    plateau.tasserColonne(colonneJouee - 1);
+                plateau.tasserColonne(colonneJouee - 1);
             }
 /// si le joueur joue un desintegrateur
             if (choixJoueur == 3) {
@@ -196,9 +216,9 @@ public class Partie {
                     ligneDesint = sc.nextInt();
 
                 }
-                plateau.supprimerJeton(ligneDesint-1, colonneJouee-1);
+                plateau.supprimerJeton(ligneDesint - 1, colonneJouee - 1);
                 joueurCourant.utiliserDesintegrateur();
-                plateau.tasserColonne(colonneJouee-1);
+                plateau.tasserColonne(colonneJouee - 1);
             }
 
 ///

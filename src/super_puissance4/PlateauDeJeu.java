@@ -69,7 +69,6 @@ public class PlateauDeJeu {
                 if (grille[ligne][colonne].lireCouleurDuJeton().equals(couleur) && grille[ligne + 1][colonne].lireCouleurDuJeton().equals(couleur) && grille[ligne + 2][colonne].lireCouleurDuJeton().equals(couleur) && grille[ligne + 3][colonne].lireCouleurDuJeton().equals(couleur)) {
                     return true; //si la case etudiee et les 3 à sa droite sont de la bonne couleur, on retourne true
                 }
-
             }
         }
         return false; //si on n'a trouve aucune case gagnante, on retourne false
