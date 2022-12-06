@@ -104,6 +104,7 @@ public class Partie {
             int colonneJouee;
             int choixJoueur = 99;//variable prenant le choix du joueur d'on initialise volontairement en un choix invalide
             boolean choixValide = false; //cette variable servira a verifier si le joueur fait un choix possible
+            boolean recupValide;//variable attestant de la validite de la case que le joueur veut recuperer ou desintegrer
             sc = new Scanner(System.in);
             plateau.afficherGrilleSurConsole();
             if (joueurCourant == listeJoueurs[0]) {
@@ -185,36 +186,53 @@ public class Partie {
             }
 /// si le joueur recupere un jeton
             if (choixJoueur == 2) {
-                int ligneJouee;
-                System.out.println("Sur quelle colonne est le jeton que vous voulez enlever?");
-                colonneJouee = sc.nextInt();
-                System.out.println("Sur quelle ligne est le jeton que vous voulez recuperer?");
-                ligneJouee = sc.nextInt();
-                while (plateau.lireCouleurJeton(ligneJouee - 1, colonneJouee - 1) != joueurCourant.getCouleur()) { //tant que le joueur ne joue pas sur un jeton qu'il possede
-                    System.out.println("Il n'y a pas de jeton a vous sur  cette case.");
-                    System.out.println("Sur quelle colonne est le jeton que vous voulez enlever?");
+                int ligneJouee = 99;
+                colonneJouee = 99;
+                recupValide = false;
+                while (recupValide == false) {
+                    recupValide = true;//on part du principe que le joueur veut recuperer une case valide
+                    System.out.println("Sur quelle colonne est le jeton que vous voulez enlever (1 a 7)?");
                     colonneJouee = sc.nextInt();
-                    System.out.println("Sur quelle ligne est le jeton que vous voulez recuperer?");
+                    System.out.println("Sur quelle ligne est le jeton que vous voulez recuperer? (1 a 6)");
                     ligneJouee = sc.nextInt();
+                    if ((colonneJouee <= 0) || (colonneJouee >= 8) || (ligneJouee <= 0) || (ligneJouee >= 7)) {  //tant que l'utilisateur comprend que dalle, on lui redemande                       
+                        System.out.println("Colonne de 1 a 7 et ligne de 1 a 6");
+                        recupValide = false;
 
+                    }
+                    if (recupValide == true) { //si on a passe la premiere verification
+                        if (plateau.lireCouleurJeton(ligneJouee - 1, colonneJouee - 1) != joueurCourant.getCouleur()) { //tant que le joueur ne joue pas sur un jeton qu'il possede
+                            System.out.println("Il n'y a pas de jeton a vous sur  cette case.");
+                            recupValide = false;
+                        }
+                    }
                 }
                 joueurCourant.ajouterJeton(plateau.recupererJeton(ligneJouee - 1, colonneJouee - 1)); //on enleve le jeton et on le redonne au joueur
                 plateau.tasserColonne(colonneJouee - 1);
             }
 /// si le joueur joue un desintegrateur
             if (choixJoueur == 3) {
-                int ligneDesint;
-                System.out.println("Sur quelle colonne est le jeton que vous voulez desintegrer?");
-                colonneJouee = sc.nextInt();
-                System.out.println("Sur quelle ligne est le jeton que vous voulez desintegrer?");
-                ligneDesint = sc.nextInt();
-                while (plateau.lireCouleurJeton(ligneDesint - 1, colonneJouee - 1) != joueurSuivant.getCouleur()) {
-                    System.out.println("Il n'y a pas de jeton advesre sur  cette case.");
+                int ligneDesint = 99;
+                colonneJouee = 99;
+                boolean desintValide = false;
+                while (desintValide == false) {
+                    desintValide = true;
                     System.out.println("Sur quelle colonne est le jeton que vous voulez desintegrer?");
                     colonneJouee = sc.nextInt();
                     System.out.println("Sur quelle ligne est le jeton que vous voulez desintegrer?");
                     ligneDesint = sc.nextInt();
 
+                    if ((colonneJouee <= 0) || (colonneJouee >= 8) || (ligneDesint <= 0) || (ligneDesint >= 7)) {  //tant que l'utilisateur comprend que dalle, on lui redemande
+                        System.out.println("Colonne de 1 a 7 et ligne de 1 a 6");
+                        desintValide = false;
+                    }
+
+                    if (desintValide == true) {
+                        if (plateau.lireCouleurJeton(ligneDesint - 1, colonneJouee - 1) != joueurSuivant.getCouleur()) {
+                            System.out.println("Il n'y a pas de jeton advesre sur  cette case.");
+                            desintValide = false;
+                        }
+                    }
                 }
                 plateau.supprimerJeton(ligneDesint - 1, colonneJouee - 1);
                 joueurCourant.utiliserDesintegrateur();
